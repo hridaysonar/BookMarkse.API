@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { FaBookmark } from "react-icons/fa";
 
-const Blog = () => {
+const Blog = ({setReading,reading ,setBookmarks,bookmarks}) => {
 
     const [blog, setBlog] = useState([])
 
+
+    const buttonHendle =(title)=>{
+        
+      const newBookMarks =  bookmarks.filter((book)=>book!==title)
+      setBookmarks(newBookMarks)
+      console.log(newBookMarks);
+        
+    }
+
+    const handleBookmark =(redingTime,title)=>{
+        // console.log('hello word',redingTime);
+        setBookmarks([...bookmarks,title])
+        setReading(reading+redingTime)
+    }
     // useEffect(()=>{
     //     fetch("blogs.json")
     //     .then(res=>res.json())
@@ -44,9 +58,9 @@ const Blog = () => {
                                 <div className='author flex justify-around items-center'>
                                     <h3>{author}</h3>
                                     <img className='w-16' src={author_img} alt="" />
-                                    <FaBookmark />
+                                    <button className=' cursor-pointer' onClick={()=>handleBookmark(reading_time,title)} ><FaBookmark /></button>
                                 </div>
-                                
+
                                 <h2 className="card-title">{title}</h2>
                                 <p>By {author} — {posted_date}</p>
                                 {/* <p className=''>{hashtags}</p> */}
@@ -62,7 +76,7 @@ const Blog = () => {
                                 </div>
 
                                 <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">mark as read</button>
+                                    <button onClick={()=>buttonHendle(title)} className="btn btn-primary">mark as read</button>
                                 </div>
                             </div>
                         </div>
