@@ -42,7 +42,7 @@ const Blog = ({setReading,reading ,setBookmarks,bookmarks}) => {
 
     return (
         <div className='m-2'>
-            <h1 className='text-3xl' >total:{blog.length}</h1>
+            <h1 className='text-3xl text-white' >total:{blog.length}</h1>
             <div className="alll-blogs">
                 {/* {
                     blog.map((item)=>(<div key={item.id}>{item.author}</div>))
